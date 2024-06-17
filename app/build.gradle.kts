@@ -77,6 +77,7 @@ dependencies {
 
     // Dagger Hilt for dependency injection
     implementation(libs.dagger.hilt)
+    implementation(libs.hilt.navigation)
 
     // Room for database management
     implementation(libs.androidx.room.runtime)

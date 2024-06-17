@@ -11,11 +11,12 @@ composeBom = "2024.06.00"
 lifecycleViewmodelCompose = "2.8.2"
 composeNavigation = "2.8.0-beta03"
 serialization = "1.6.3"
-androidx-room = "2.6.1"
+androidxRoom = "2.6.1"
 ksp = "1.9.23-1.0.19"
 retrofit = "2.9.0"
 coil = "2.6.0"
-dagger-hilt = "2.44"
+daggerHilt = "2.44"
+hiltNavigation = "1.0.0"
 paging = "3.3.0"
 datastore = "1.1.1"
 uiTextGoogleFonts = "1.6.8"
@@ -45,12 +46,13 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 
 # Dagger Hilt for dependency injection
-dagger-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "dagger-hilt" }
+dagger-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt" }
+hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigation" }
 
 # Room for database management
-androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx-room" }
-androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidx-room" }
-androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "androidx-room" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidxRoom" }
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidxRoom" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "androidxRoom" }
 
 # Retrofit for network operations
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
@@ -74,6 +76,6 @@ kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-room = { id = "androidx.room", version.ref = "androidx-room" }
-dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger-hilt" }
+room = { id = "androidx.room", version.ref = "androidxRoom" }
+dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
