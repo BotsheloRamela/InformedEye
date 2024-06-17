@@ -1,10 +1,9 @@
 package com.botsheloramela.informedeye.presentation.components
 
-import android.content.res.Configuration
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.icons.Icons
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,6 +14,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.botsheloramela.informedeye.domain.model.Article
@@ -38,6 +38,7 @@ fun ArticleCard(
             modifier = Modifier
                 .padding(horizontal = ExtraSmallPadding)
                 .height(ArticleCardSize)
+                .weight(1f)
         ) {
             Text(
                 text = article.title,
@@ -67,7 +68,7 @@ fun ArticleCard(
         AsyncImage(
             modifier = Modifier
                 .size(ArticleCardSize)
-                .clip(MaterialTheme.shapes.medium),
+                .clip(RoundedCornerShape(24.dp)),
             model = ImageRequest.Builder(context).data(article.urlToImage).build(),
             contentDescription = null
         )
