@@ -77,6 +77,8 @@ dependencies {
 
     // Dagger Hilt for dependency injection
     implementation(libs.dagger.hilt)
+    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.navigation)
 
     // Room for database management

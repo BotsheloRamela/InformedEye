@@ -15,8 +15,8 @@ androidxRoom = "2.6.1"
 ksp = "1.9.23-1.0.19"
 retrofit = "2.9.0"
 coil = "2.6.0"
-daggerHilt = "2.44"
-hiltNavigation = "1.0.0"
+daggerHilt = "2.51.1"
+hiltCompiler = "1.2.0"
 paging = "3.3.0"
 datastore = "1.1.1"
 uiTextGoogleFonts = "1.6.8"
@@ -47,7 +47,9 @@ coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 
 # Dagger Hilt for dependency injection
 dagger-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "daggerHilt" }
-hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigation" }
+hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "daggerHilt" }
+hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltCompiler" }
+hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltCompiler" }
 
 # Room for database management
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidxRoom" }
