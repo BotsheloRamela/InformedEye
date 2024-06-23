@@ -1,6 +1,7 @@
 package com.botsheloramela.informedeye.data.remote
 
 import com.botsheloramela.informedeye.data.remote.dto.NewsResponse
+import com.botsheloramela.informedeye.utils.Constants.API_KEY
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -10,7 +11,7 @@ interface NewsApi {
     suspend fun getNews(
         @Query("page") page: Int,
         @Query("sources") sources: String,
-        @Query("apiKey") apiKey: String = System.getenv("NEWS_API_KEY")?.toString() ?: ""
+        @Query("apiKey") apiKey: String = API_KEY
     ) : NewsResponse
 
 }
