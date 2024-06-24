@@ -40,8 +40,9 @@ class MainActivity: ComponentActivity() {
                         composable<Home> {
                             val viewModel: HomeViewModel = hiltViewModel()
                             val articles = viewModel.news.collectAsLazyPagingItems()
+                            val topHeadlines = viewModel.headlines.collectAsLazyPagingItems()
 
-                            HomeScreen(articles = articles)
+                            HomeScreen(articles = articles, topHeadlines = topHeadlines)
                         }
                     }
                 }

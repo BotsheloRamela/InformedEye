@@ -35,6 +35,7 @@ import com.botsheloramela.informedeye.presentation.Dimensions.ExtraSmallPadding2
 import com.botsheloramela.informedeye.presentation.Dimensions.MediumPadding1
 import com.botsheloramela.informedeye.presentation.Dimensions.MediumPadding2
 import com.botsheloramela.informedeye.presentation.components.ArticlesList
+import com.botsheloramela.informedeye.presentation.components.TopArticlesList
 import com.botsheloramela.informedeye.utils.getDayOfMonthSuffix
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -44,24 +45,15 @@ import java.util.Locale
 @OptIn(ExperimentalMaterial3Api::class)
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun HomeScreen(articles: LazyPagingItems<Article>) {
+fun HomeScreen(
+    articles: LazyPagingItems<Article>,
+    topHeadlines: LazyPagingItems<Article>
+) {
     val currentDate = LocalDate.now()
     val day = currentDate.dayOfMonth
     val suffix = getDayOfMonthSuffix(day)
     val formatter = DateTimeFormatter.ofPattern("EEEE, MMMM d'$suffix'", Locale.getDefault())
     val formattedDate = currentDate.format(formatter)
-
-    val titles by remember {
-        derivedStateOf {
-            if (articles.itemCount > 10) {
-                articles.itemSnapshotList.items
-                    .slice(IntRange(start = 0, endInclusive = 9))
-                    .joinToString(separator = " \uD83D\uDFE5 ") { it.title }
-            } else {
-                ""
-            }
-        }
-    }
 
     Scaffold(
         topBar = {
@@ -89,10 +81,14 @@ fun HomeScreen(articles: LazyPagingItems<Article>) {
         },
     ) { padding ->
         Surface(
-            modifier = Modifier.padding(padding).padding(horizontal = ExtraSmallPadding2),
+            modifier = Modifier
+                .padding(padding)
+                .padding(horizontal = ExtraSmallPadding2),
         ) {
             Column(
-                modifier = Modifier.fillMaxSize().padding(top = MediumPadding1)
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = MediumPadding1)
             ) {
                 Text(
                     text = formattedDate,
@@ -106,7 +102,15 @@ fun HomeScreen(articles: LazyPagingItems<Article>) {
                     color = MaterialTheme.colorScheme.primary,
                     fontWeight = MaterialTheme.typography.titleLarge.fontWeight,
                 )
-
+                Spacer(modifier = Modifier.height(MediumPadding1))
+                // TODO: Top headlines carousal
+                TopArticlesList(
+                    modifier = Modifier.padding(horizontal = MediumPadding1),
+                    articles = topHeadlines,
+                    onClick = {
+                        //TODO: Navigate to Details Screen
+                    }
+                )
                 Spacer(modifier = Modifier.height(MediumPadding1))
                 ArticlesList(
                     modifier = Modifier.padding(horizontal = MediumPadding1),

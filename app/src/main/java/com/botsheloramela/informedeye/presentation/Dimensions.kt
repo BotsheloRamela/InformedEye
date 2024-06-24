@@ -7,6 +7,7 @@ object Dimensions {
     val MediumPadding2 = 30.dp
     val ExtraSmallPadding = 3.dp
     val ExtraSmallPadding2 = 8.dp
+    val ExtraSmallPadding3 = 12.dp
 
     val PageIndicatorWidth = 52.dp
 

@@ -23,6 +23,7 @@ import com.botsheloramela.informedeye.domain.model.Source
 import com.botsheloramela.informedeye.presentation.Dimensions.ArticleCardSize
 import com.botsheloramela.informedeye.presentation.Dimensions.ExtraSmallPadding
 import com.botsheloramela.informedeye.presentation.Dimensions.ExtraSmallPadding2
+import com.botsheloramela.informedeye.presentation.Dimensions.ExtraSmallPadding3
 import com.botsheloramela.informedeye.ui.theme.InformedEyeTheme
 
 @Composable
@@ -66,7 +67,7 @@ fun ArticleCard(
             }
         }
 
-        Spacer(modifier = Modifier.width(ExtraSmallPadding2))
+        Spacer(modifier = Modifier.width(ExtraSmallPadding3))
 
         AsyncImage(
             modifier = Modifier
