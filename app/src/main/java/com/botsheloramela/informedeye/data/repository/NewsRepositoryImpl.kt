@@ -38,4 +38,22 @@ class NewsRepositoryImpl(
             }
         ).flow
     }
+
+    /**
+     * Retrieves top headlines and returns them as a flow of paginated data.
+     *
+     * @return A Flow emitting PagingData<Article>, representing paginated news articles.
+     */
+    override fun getHeadlines(): Flow<PagingData<Article>> {
+        return Pager(
+            config = PagingConfig(pageSize = 5),
+            // Create a new instance of NewsArticlePagingSource for each pager
+            pagingSourceFactory = {
+                NewsArticlePagingSource(
+                    newsApi = newsApi,
+                    sources = null
+                )
+            }
+        ).flow
+    }
 }

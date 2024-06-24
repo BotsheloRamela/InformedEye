@@ -12,7 +12,7 @@ import com.botsheloramela.informedeye.domain.model.Article
  */
 class NewsArticlePagingSource(
     private val newsApi: NewsApi,
-    private val sources: String,
+    private val sources: String?
 ): PagingSource<Int, Article>() {
 
     private var totalFetchedArticlesCount  = 0;
@@ -27,23 +27,26 @@ class NewsArticlePagingSource(
         val pageNumber  = params.key ?: 1
 
         return try {
-            val newsResponse = newsApi.getNews(sources = sources, page = pageNumber)
+            val newsResponse = if (sources.isNullOrEmpty()) {
+                // Handle case where sources are not provided or empty
+                newsApi.getTopHeadlines(page = pageNumber)
+            } else {
+                // Fetch news based on sources when they are provided
+                newsApi.getNews(sources = sources, page = pageNumber)
+            }
             totalFetchedArticlesCount += newsResponse.articles.size
 
-            // Filter out duplicate articles based on title
+            // Assuming top headlines also have titles, filter out duplicates similarly
             val uniqueArticles = newsResponse.articles.distinctBy { it.title }
 
             LoadResult.Page(
                 data = uniqueArticles,
-                // Determine the next page number unless we've reached the last page
                 nextKey = if (totalFetchedArticlesCount >= newsResponse.totalResults) null else pageNumber + 1,
-                prevKey = null // Previous key is not supported in this implementation
+                prevKey = null
             )
         } catch (e: Exception) {
             e.printStackTrace()
-            LoadResult.Error(
-                throwable = e
-            )
+            LoadResult.Error(throwable = e)
         }
     }
 

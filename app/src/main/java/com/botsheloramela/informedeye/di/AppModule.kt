@@ -4,6 +4,7 @@ import com.botsheloramela.informedeye.data.remote.NewsApi
 import com.botsheloramela.informedeye.data.repository.NewsRepositoryImpl
 import com.botsheloramela.informedeye.domain.repository.NewsRepository
 import com.botsheloramela.informedeye.domain.usecase.GetNewsUseCase
+import com.botsheloramela.informedeye.domain.usecase.GetTopHeadlinesUseCase
 import com.botsheloramela.informedeye.domain.usecase.NewsUseCases
 import com.botsheloramela.informedeye.utils.Constants.BASE_URL
 import dagger.Module
@@ -39,7 +40,8 @@ object AppModule {
         newsRepository: NewsRepository
     ): NewsUseCases {
         return NewsUseCases(
-            getNews = GetNewsUseCase(newsRepository)
+            getNews = GetNewsUseCase(newsRepository),
+            getTopHeadlines = GetTopHeadlinesUseCase(newsRepository)
         )
     }
 }

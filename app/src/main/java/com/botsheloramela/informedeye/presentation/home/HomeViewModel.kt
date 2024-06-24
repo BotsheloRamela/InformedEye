@@ -14,4 +14,6 @@ class HomeViewModel @Inject constructor(
     val news = newsUseCases.getNews(
         sources = listOf("google-news", "bbc-news", "cnn")
     ).cachedIn(viewModelScope)
+
+    val headlines = newsUseCases.getTopHeadlines().cachedIn(viewModelScope)
 }
