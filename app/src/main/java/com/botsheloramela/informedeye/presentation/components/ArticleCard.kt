@@ -19,7 +19,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.botsheloramela.informedeye.R
 import com.botsheloramela.informedeye.domain.model.Article
 import com.botsheloramela.informedeye.domain.model.Source
 import com.botsheloramela.informedeye.presentation.Dimensions.ArticleCardSize
@@ -28,6 +27,7 @@ import com.botsheloramela.informedeye.presentation.Dimensions.ExtraSmallPadding2
 import com.botsheloramela.informedeye.presentation.Dimensions.ExtraSmallPadding3
 import com.botsheloramela.informedeye.ui.theme.InformedEyeTheme
 import com.botsheloramela.informedeye.utils.RandomPlaceholderImageUtil
+import com.botsheloramela.informedeye.utils.TimeUtils
 
 @Composable
 fun ArticleCard(
@@ -63,7 +63,7 @@ fun ArticleCard(
                 )
                 Spacer(modifier = Modifier.width(ExtraSmallPadding2))
                 Text(
-                    text = article.publishedAt,
+                    text = TimeUtils.formatTimestamp(article.publishedAt),
                     style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
                     color = MaterialTheme.colorScheme.onSurface,
                     modifier = Modifier.padding(bottom = ExtraSmallPadding)
