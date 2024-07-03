@@ -1,7 +1,6 @@
 package com.botsheloramela.informedeye.presentation.components
 
 import android.content.res.Configuration
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -11,7 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -20,7 +18,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -37,6 +34,7 @@ import com.botsheloramela.informedeye.presentation.Dimensions.ExtraSmallPadding
 import com.botsheloramela.informedeye.presentation.Dimensions.ExtraSmallPadding2
 import com.botsheloramela.informedeye.presentation.Dimensions.MediumPadding1
 import com.botsheloramela.informedeye.ui.theme.InformedEyeTheme
+import com.botsheloramela.informedeye.utils.RandomPlaceholderImageUtil
 
 @Composable
 fun TopArticleCard(
@@ -62,12 +60,14 @@ fun TopArticleCard(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center,
         ) {
+            val randomDrawableRes = RandomPlaceholderImageUtil.getRandomDrawableResource()
             AsyncImage(
                 modifier = Modifier.fillMaxSize(),
                 model = ImageRequest.Builder(context).data(article.urlToImage).build(),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 alpha = 0.3f,
+                error = painterResource(id = randomDrawableRes)
             )
 
             Column(

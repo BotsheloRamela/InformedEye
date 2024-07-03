@@ -12,12 +12,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.botsheloramela.informedeye.R
 import com.botsheloramela.informedeye.domain.model.Article
 import com.botsheloramela.informedeye.domain.model.Source
 import com.botsheloramela.informedeye.presentation.Dimensions.ArticleCardSize
@@ -25,6 +27,7 @@ import com.botsheloramela.informedeye.presentation.Dimensions.ExtraSmallPadding
 import com.botsheloramela.informedeye.presentation.Dimensions.ExtraSmallPadding2
 import com.botsheloramela.informedeye.presentation.Dimensions.ExtraSmallPadding3
 import com.botsheloramela.informedeye.ui.theme.InformedEyeTheme
+import com.botsheloramela.informedeye.utils.RandomPlaceholderImageUtil
 
 @Composable
 fun ArticleCard(
@@ -33,6 +36,7 @@ fun ArticleCard(
     onClick: () -> Unit,
 ) {
     val context = LocalContext.current
+    val randomDrawableRes = RandomPlaceholderImageUtil.getRandomDrawableResource()
 
     Row(modifier = modifier.clickable { onClick() }) {
         Column(
@@ -75,7 +79,8 @@ fun ArticleCard(
                 .clip(RoundedCornerShape(24.dp)),
             model = ImageRequest.Builder(context).data(article.urlToImage).build(),
             contentDescription = null,
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Crop,
+            error = painterResource(id = randomDrawableRes)
         )
     }
 }
