@@ -47,7 +47,8 @@ import java.util.Locale
 @Composable
 fun HomeScreen(
     articles: LazyPagingItems<Article>,
-    topHeadlines: LazyPagingItems<Article>
+    topHeadlines: LazyPagingItems<Article>,
+    navigateToDetails: (Article) -> Unit
 ) {
     val currentDate = LocalDate.now()
     val day = currentDate.dayOfMonth
@@ -107,17 +108,13 @@ fun HomeScreen(
                 TopArticlesList(
                     modifier = Modifier.padding(horizontal = MediumPadding1),
                     articles = topHeadlines,
-                    onClick = {
-                        //TODO: Navigate to Details Screen
-                    }
+                    onClick = navigateToDetails
                 )
                 Spacer(modifier = Modifier.height(MediumPadding1))
                 ArticlesList(
                     modifier = Modifier.padding(horizontal = MediumPadding1),
                     articles = articles,
-                    onClick = {
-                        //TODO: Navigate to Details Screen
-                    }
+                    onClick = navigateToDetails
                 )
             }
         }

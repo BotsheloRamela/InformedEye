@@ -2,7 +2,6 @@ package com.botsheloramela.informedeye
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
@@ -10,16 +9,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.botsheloramela.informedeye.ui.theme.InformedEyeTheme
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.paging.compose.collectAsLazyPagingItems
-import com.botsheloramela.informedeye.presentation.home.HomeScreen
-import com.botsheloramela.informedeye.presentation.home.HomeViewModel
+import com.botsheloramela.informedeye.navigation.NavGraph
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.serialization.Serializable
 
 @AndroidEntryPoint
 class MainActivity: ComponentActivity() {
@@ -33,23 +26,9 @@ class MainActivity: ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    NavHost(
-                        navController = navController,
-                        startDestination = Home
-                    ) {
-                        composable<Home> {
-                            val viewModel: HomeViewModel = hiltViewModel()
-                            val articles = viewModel.news.collectAsLazyPagingItems()
-                            val topHeadlines = viewModel.headlines.collectAsLazyPagingItems()
-
-                            HomeScreen(articles = articles, topHeadlines = topHeadlines)
-                        }
-                    }
+                    NavGraph(navController = navController)
                 }
             }
         }
     }
 }
-
-@Serializable
-object Home
