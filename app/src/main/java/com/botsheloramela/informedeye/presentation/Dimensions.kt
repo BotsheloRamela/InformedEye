@@ -12,4 +12,6 @@ object Dimensions {
     val PageIndicatorWidth = 52.dp
 
     val ArticleCardSize = 96.dp
+
+    val ArticleImageHeight = 350.dp
 }

@@ -1,4 +1,4 @@
-package com.botsheloramela.informedeye.presentation.details.compenents
+package com.botsheloramela.informedeye.presentation.details.components
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.fillMaxWidth
