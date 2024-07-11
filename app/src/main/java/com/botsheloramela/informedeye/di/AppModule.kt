@@ -1,5 +1,9 @@
 package com.botsheloramela.informedeye.di
 
+import android.app.Application
+import androidx.room.Room
+import com.botsheloramela.informedeye.data.local.NewsDatabase
+import com.botsheloramela.informedeye.data.local.NewsTypeConverter
 import com.botsheloramela.informedeye.data.remote.NewsApi
 import com.botsheloramela.informedeye.data.repository.NewsRepositoryImpl
 import com.botsheloramela.informedeye.domain.repository.NewsRepository
@@ -44,4 +48,24 @@ object AppModule {
             getTopHeadlines = GetTopHeadlinesUseCase(newsRepository)
         )
     }
+
+    @Provides
+    @Singleton
+    fun provideNewsDatabase(
+        application: Application
+    ): NewsDatabase {
+        return Room.databaseBuilder(
+            context = application,
+            klass = NewsDatabase::class.java,
+            name = "news_db"
+        ).addTypeConverter(NewsTypeConverter())
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideNewsDao(
+        newsDatabase: NewsDatabase
+    ) = newsDatabase.newsDao
 }
