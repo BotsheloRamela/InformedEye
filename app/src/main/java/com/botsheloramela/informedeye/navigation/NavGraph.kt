@@ -3,6 +3,7 @@ package com.botsheloramela.informedeye.navigation
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -49,24 +50,28 @@ fun NavGraph(
         else -> currentRoute
     }
 
+    // Hide the bottom navigation when the user is in the details screen
+    val showBottomNav = currentRoute != Screen.Details
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
-            BottomNavigation(
-                items = bottomNavItems,
-                selectedItem = currentRoute,
-                onItemClick = { index ->
-                    when (index) {
-                        0 -> navigateToTab(navController = navController, screen = Screen.Home)
-                        1 -> navigateToTab(navController = navController, screen = Screen.Bookmarks)
-                    }
-                }
-            )
+            if (showBottomNav) {
+                BottomNavigation(
+                    items = bottomNavItems,
+                    onItemClick = { index ->
+                        val screen = bottomNavItems[index].route
+                        navigateToTab(navController, screen)
+                    },
+                    selectedItem = currentRoute
+                )
+            }
         }
-    ) { padding ->
+    ) {
         NavHost(
             navController = navController,
-            startDestination = startDestination
+            startDestination = startDestination,
+            modifier = Modifier.fillMaxSize(),
         ) {
             composable<Screen.Home> {
                 val viewModel: HomeViewModel = hiltViewModel()
