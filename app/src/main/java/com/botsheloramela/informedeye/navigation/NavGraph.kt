@@ -36,7 +36,7 @@ fun NavGraph(
                 navigateToDetails = { article ->
                     navController.navigate(
                         Screen.Details(
-                            author = article.author ?: article.source.name,
+                            author = article.author,
                             content = article.content,
                             description = article.description,
                             publishedAt = article.publishedAt,

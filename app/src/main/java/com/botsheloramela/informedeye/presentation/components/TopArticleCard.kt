@@ -1,6 +1,7 @@
 package com.botsheloramela.informedeye.presentation.components
 
 import android.content.res.Configuration
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -44,58 +45,61 @@ fun TopArticleCard(
 ) {
     val context = LocalContext.current
 
-    Card(
-        onClick = { onClick() }, // TODO: Navigate to article details screen
-        modifier = modifier
-            .clip(RoundedCornerShape(20.dp))
-            .height(200.dp)
-            .width(350.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = Color.Black.copy(
-                alpha = 0.5f
+    Box(modifier = modifier.clickable {
+        // TODO: Open browser with article.url
+    }) {
+        Card(
+            modifier = modifier
+                .clip(RoundedCornerShape(20.dp))
+                .height(200.dp)
+                .width(350.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = Color.Black.copy(
+                    alpha = 0.5f
+                ),
             ),
-        ),
-    ) {
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center,
         ) {
-            val randomDrawableRes = RandomPlaceholderImageUtil.getRandomDrawableResource()
-            AsyncImage(
+            Box(
                 modifier = Modifier.fillMaxSize(),
-                model = ImageRequest.Builder(context).data(article.urlToImage).build(),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                alpha = 0.3f,
-                error = painterResource(id = randomDrawableRes)
-            )
-
-            Column(
-                modifier = Modifier
-                    .align(Alignment.CenterStart)
-                    .padding(MediumPadding1),
+                contentAlignment = Alignment.Center,
             ) {
-                Text(
-                    text = article.title,
-                    style = MaterialTheme.typography.titleMedium.copy(
-                        fontWeight = FontWeight.Bold,
-                    ),
-                    color = Color.White,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.width(250.dp)
+                val randomDrawableRes = RandomPlaceholderImageUtil.getRandomDrawableResource()
+                AsyncImage(
+                    modifier = Modifier.fillMaxSize(),
+                    model = ImageRequest.Builder(context).data(article.urlToImage).build(),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    alpha = 0.3f,
+                    error = painterResource(id = randomDrawableRes)
                 )
 
-                Spacer(modifier = Modifier.height(ExtraSmallPadding2))
+                Column(
+                    modifier = Modifier
+                        .align(Alignment.CenterStart)
+                        .padding(MediumPadding1),
+                ) {
+                    Text(
+                        text = article.title,
+                        style = MaterialTheme.typography.titleMedium.copy(
+                            fontWeight = FontWeight.Bold,
+                        ),
+                        color = Color.White,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.width(250.dp)
+                    )
 
-                Text(
-                    text = article.source.name,
-                    color = MaterialTheme.colorScheme.secondary,
-                    style = MaterialTheme.typography.labelMedium.copy(
-                        fontWeight = FontWeight.Bold,
-                    ),
-                    modifier = Modifier.padding(bottom = ExtraSmallPadding)
-                )
+                    Spacer(modifier = Modifier.height(ExtraSmallPadding2))
+
+                    Text(
+                        text = article.source.name,
+                        color = MaterialTheme.colorScheme.secondary,
+                        style = MaterialTheme.typography.labelMedium.copy(
+                            fontWeight = FontWeight.Bold,
+                        ),
+                        modifier = Modifier.padding(bottom = ExtraSmallPadding)
+                    )
+                }
             }
         }
     }

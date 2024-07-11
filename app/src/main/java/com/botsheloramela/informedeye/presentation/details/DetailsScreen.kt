@@ -19,8 +19,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.botsheloramela.informedeye.domain.model.Article
@@ -86,16 +88,27 @@ fun DetailsScreen(
                 ) {
                     Text(
                         text = article.title,
-                        style = MaterialTheme.typography.displaySmall,
+                        style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.onSurface,
+                        fontWeight = FontWeight(500),
+                        fontSize = 28.sp,
+                        lineHeight = 32.sp
                     )
 
                     Spacer(modifier = Modifier.height(ExtraSmallPadding3))
 
                     Text(
-                        text = "${TimeUtils.formatTimestamp(article.publishedAt)} | ${article.author}",
+                        text = "${TimeUtils.formatTimestamp(article.publishedAt)} | ${article.source.name} ${ if (article.author != null) "| ${article.author}" else "" }",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.primary,
+                    )
+
+                    Spacer(modifier = Modifier.height(ExtraSmallPadding3))
+
+                    Text(
+                        text = article.description,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurface,
                     )
                 }
             }

@@ -29,7 +29,7 @@ fun ArticlesList(
             contentPadding = PaddingValues(all = ExtraSmallPadding2)
         ) {
             items(count = articles.itemCount) {
-                articles[it]?.let{
+                articles[it]?.let {
                     ArticleCard(article = it, onClick = { onClick(it) })
                 }
             }
