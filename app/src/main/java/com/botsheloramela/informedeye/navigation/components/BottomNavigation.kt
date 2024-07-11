@@ -21,13 +21,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.botsheloramela.informedeye.R
+import com.botsheloramela.informedeye.navigation.Screen
 import com.botsheloramela.informedeye.presentation.Dimensions.ExtraSmallPadding2
 import com.botsheloramela.informedeye.ui.theme.InformedEyeTheme
 
 @Composable
 fun BottomNavigation(
     items: List<BottomNavItem>,
-    onItemClick: (route: String) -> Unit,
+    onItemClick: (route: Screen) -> Unit,
     selectedItem: Int
 ) {
     NavigationBar(
@@ -63,7 +64,7 @@ fun BottomNavigation(
 }
 
 data class BottomNavItem(
-    val route: String,
+    val route: Screen,
     @DrawableRes val icon: Int,
     val title: String
 )
@@ -75,9 +76,9 @@ fun BottomNavigationPreview() {
     InformedEyeTheme {
         BottomNavigation(
             items = listOf(
-                BottomNavItem("home", R.drawable.ic_home, "Home"),
-                BottomNavItem("search", R.drawable.ic_search, "Search"),
-                BottomNavItem("bookmarks", R.drawable.ic_bookmark, "Bookmarks")
+                BottomNavItem(Screen.Home, R.drawable.ic_home, "Home"),
+//                BottomNavItem("search", R.drawable.ic_search, "Search"),
+                BottomNavItem(Screen.Bookmarks, R.drawable.ic_bookmark, "Bookmarks")
             ),
             onItemClick = {},
             selectedItem = 0

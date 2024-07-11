@@ -48,8 +48,9 @@ fun DetailsTopAppBar(
         actions = {
             IconButton(onClick = onBookmarkClick) {
                 Icon(
-                    imageVector = Icons.Default.Favorite,
+                    painter = painterResource(id = R.drawable.ic_bookmark),
                     contentDescription = "Bookmark",
+                    modifier = Modifier.size(24.dp)
                 )
             }
             IconButton(onClick = onShareClick) {
