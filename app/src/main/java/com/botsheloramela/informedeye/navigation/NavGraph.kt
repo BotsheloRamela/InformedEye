@@ -4,16 +4,16 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.toRoute
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.botsheloramela.informedeye.domain.model.Article
-import com.botsheloramela.informedeye.domain.model.Source
-import com.botsheloramela.informedeye.presentation.bookmark.BookmarkScreen
 import com.botsheloramela.informedeye.presentation.bookmark.BookmarkViewModel
+import com.botsheloramela.informedeye.presentation.bookmark.BookmarksScreen
 import com.botsheloramela.informedeye.presentation.details.DetailsScreen
+import com.botsheloramela.informedeye.presentation.details.DetailsViewModel
 import com.botsheloramela.informedeye.presentation.home.HomeScreen
 import com.botsheloramela.informedeye.presentation.home.HomeViewModel
 
@@ -36,66 +36,39 @@ fun NavGraph(
                 articles = articles,
                 topHeadlines = topHeadlines,
                 navigateToDetails = { article ->
-                    navController.navigate(
-                        Screen.Details(
-                            author = article.author,
-                            content = article.content,
-                            description = article.description,
-                            publishedAt = article.publishedAt,
-                            sourceId = article.source.id,
-                            sourceName = article.source.name,
-                            title = article.title,
-                            url = article.url,
-                            urlToImage = article.urlToImage
-                        )
-                    )
+                    navigateToDetails(navController, article)
                 }
             )
         }
 
-        composable<Screen.Details> { backStackEntry ->
-            val args = backStackEntry.toRoute<Screen.Details>()
-            DetailsScreen(
-                article = Article(
-                    author = args.author,
-                    content = args.content,
-                    description = args.description,
-                    publishedAt = args.publishedAt,
-                    source = Source(
-                        id = args.sourceId,
-                        name = args.sourceName
-                    ),
-                    title = args.title,
-                    url = args.url,
-                    urlToImage = args.urlToImage
-                ),
-                event = {},
-                navigateUp = {
-                    navController.popBackStack()
-                }
-            )
+        composable<Screen.Details> {
+            val viewModel: DetailsViewModel = hiltViewModel()
+            // TODO: Handle side effect
+            navController.previousBackStackEntry?.savedStateHandle?.get<Article?>("article")?.let {article ->
+                DetailsScreen(
+                    article = article,
+                    event = viewModel::onBookmarkArticle,
+                    navigateUp = {
+                        navController.popBackStack()
+                    }
+                )
+            }
+
         }
 
         composable<Screen.Bookmarks> {
             val viewModel: BookmarkViewModel = hiltViewModel()
-            BookmarkScreen(
+            BookmarksScreen(
                 state = viewModel.state.value,
                 navigateToDetails = { article ->
-                    navController.navigate(
-                        Screen.Details(
-                            author = article.author,
-                            content = article.content,
-                            description = article.description,
-                            publishedAt = article.publishedAt,
-                            sourceId = article.source.id,
-                            sourceName = article.source.name,
-                            title = article.title,
-                            url = article.url,
-                            urlToImage = article.urlToImage
-                        )
-                    )
+                    navigateToDetails(navController, article)
                 }
             )
         }
     }
+}
+
+private fun navigateToDetails(navController: NavController, article: Article) {
+    navController.currentBackStackEntry?.savedStateHandle?.set("article", article)
+    navController.navigate(Screen.Details)
 }

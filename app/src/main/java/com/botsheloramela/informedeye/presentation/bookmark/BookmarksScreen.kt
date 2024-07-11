@@ -17,7 +17,7 @@ import com.botsheloramela.informedeye.presentation.Dimensions.MediumPadding1
 import com.botsheloramela.informedeye.presentation.components.BookmarkedArticlesList
 
 @Composable
-fun BookmarkScreen(
+fun BookmarksScreen(
     state: BookmarksState,
     navigateToDetails: (Article) -> Unit
 ) {
