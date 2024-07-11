@@ -31,7 +31,7 @@ fun TopArticlesList(
         ) {
             items(count = 5) {
                 articles[it]?.let {
-                    TopArticleCard(article = it, onClick = { onClick(it) })
+                    TopArticleCard(article = it)
                 }
             }
         }

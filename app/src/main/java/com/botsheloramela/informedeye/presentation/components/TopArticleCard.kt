@@ -1,6 +1,8 @@
 package com.botsheloramela.informedeye.presentation.components
 
+import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -40,13 +42,17 @@ import com.botsheloramela.informedeye.utils.RandomPlaceholderImageUtil
 @Composable
 fun TopArticleCard(
     modifier: Modifier = Modifier,
-    article: Article,
-    onClick: () -> Unit,
+    article: Article
 ) {
     val context = LocalContext.current
 
     Box(modifier = modifier.clickable {
-        // TODO: Open browser with article.url
+        Intent(Intent.ACTION_VIEW).also {
+            it.data = Uri.parse(article.url)
+            if (it.resolveActivity(context.packageManager) != null) {
+                context.startActivity(it)
+            }
+        }
     }) {
         Card(
             modifier = modifier
@@ -121,7 +127,6 @@ fun TopArticleCardPreview() {
                 publishedAt = "2 hours",
                 source = Source("id", "name")
             ),
-            onClick = {}
         )
     }
 }
