@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 sealed class Screen {
     @Serializable
     data object Home : Screen()
+
     @Serializable
     data class Details(
         val author: String?,
@@ -17,5 +18,8 @@ sealed class Screen {
         val url: String,
         val urlToImage: String
     ) : Screen()
+
+    @Serializable
+    data object Bookmarks : Screen()
 
 }

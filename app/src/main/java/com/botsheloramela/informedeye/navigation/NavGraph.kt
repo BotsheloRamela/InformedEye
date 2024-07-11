@@ -11,6 +11,8 @@ import androidx.navigation.toRoute
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.botsheloramela.informedeye.domain.model.Article
 import com.botsheloramela.informedeye.domain.model.Source
+import com.botsheloramela.informedeye.presentation.bookmark.BookmarkScreen
+import com.botsheloramela.informedeye.presentation.bookmark.BookmarkViewModel
 import com.botsheloramela.informedeye.presentation.details.DetailsScreen
 import com.botsheloramela.informedeye.presentation.home.HomeScreen
 import com.botsheloramela.informedeye.presentation.home.HomeViewModel
@@ -70,6 +72,28 @@ fun NavGraph(
                 event = {},
                 navigateUp = {
                     navController.popBackStack()
+                }
+            )
+        }
+
+        composable<Screen.Bookmarks> {
+            val viewModel: BookmarkViewModel = hiltViewModel()
+            BookmarkScreen(
+                state = viewModel.state.value,
+                navigateToDetails = { article ->
+                    navController.navigate(
+                        Screen.Details(
+                            author = article.author,
+                            content = article.content,
+                            description = article.description,
+                            publishedAt = article.publishedAt,
+                            sourceId = article.source.id,
+                            sourceName = article.source.name,
+                            title = article.title,
+                            url = article.url,
+                            urlToImage = article.urlToImage
+                        )
+                    )
                 }
             )
         }

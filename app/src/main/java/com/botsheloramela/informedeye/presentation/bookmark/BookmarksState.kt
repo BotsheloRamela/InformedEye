@@ -5,6 +5,6 @@ import com.botsheloramela.informedeye.domain.model.Article
 /**
  * State for the bookmark screen
  */
-data class BookmarkState(
+data class BookmarksState(
     val articles: List<Article> = emptyList(),
 )
