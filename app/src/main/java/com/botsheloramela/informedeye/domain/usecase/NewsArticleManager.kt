@@ -21,4 +21,9 @@ class NewsArticleManager(
     suspend fun deleteArticle(article: Article) {
         newsDao.delete(article)
     }
+
+    // Select operation
+    suspend fun selectArticle(url: String): Article? {
+        return newsDao.getArticle(url)
+    }
 }
