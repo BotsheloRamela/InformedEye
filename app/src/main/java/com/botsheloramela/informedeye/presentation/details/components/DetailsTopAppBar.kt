@@ -2,6 +2,7 @@ package com.botsheloramela.informedeye.presentation.details.components
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
@@ -14,7 +15,10 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.botsheloramela.informedeye.R
 import com.botsheloramela.informedeye.ui.theme.InformedEyeTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -22,7 +26,8 @@ import com.botsheloramela.informedeye.ui.theme.InformedEyeTheme
 fun DetailsTopAppBar(
     onBackClick: () -> Unit,
     onShareClick: () -> Unit,
-    onBookmarkClick: () -> Unit
+    onBookmarkClick: () -> Unit,
+    onBrowsingClick: () -> Unit
 ) {
     TopAppBar(
         title = { },
@@ -53,6 +58,13 @@ fun DetailsTopAppBar(
                     contentDescription = "Share",
                 )
             }
+            IconButton(onClick = onBrowsingClick) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_web),
+                    contentDescription = "Browse",
+                    modifier = Modifier.size(24.dp)
+                )
+            }
         }
     )
 }
@@ -65,7 +77,8 @@ fun DetailsTopAppBarPreview() {
         DetailsTopAppBar(
             onBackClick = { },
             onShareClick = { },
-            onBookmarkClick = { }
+            onBookmarkClick = { },
+            onBrowsingClick = { }
         )
     }
 }

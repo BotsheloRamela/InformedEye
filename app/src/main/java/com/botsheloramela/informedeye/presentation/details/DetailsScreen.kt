@@ -2,6 +2,7 @@ package com.botsheloramela.informedeye.presentation.details
 
 import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -58,7 +59,15 @@ fun DetailsScreen(
                         }
                     }
                 },
-                onBookmarkClick = { event(DetailsEvent.SaveArticle) }
+                onBookmarkClick = { event(DetailsEvent.SaveArticle) },
+                onBrowsingClick = {
+                    Intent(Intent.ACTION_VIEW).also {
+                        it.data = Uri.parse(article.url)
+                        if (it.resolveActivity(context.packageManager) != null) {
+                            context.startActivity(it)
+                        }
+                    }
+                }
             )
         }
 
