@@ -28,8 +28,8 @@ import com.botsheloramela.informedeye.ui.theme.InformedEyeTheme
 @Composable
 fun BottomNavigation(
     items: List<BottomNavItem>,
-    onItemClick: (route: Screen) -> Unit,
-    selectedItem: Int
+    onItemClick: (Int) -> Unit,
+    selectedItem: Screen?
 ) {
     NavigationBar(
         modifier = Modifier.fillMaxWidth(),
@@ -38,8 +38,8 @@ fun BottomNavigation(
     ) {
         items.forEachIndexed { index, item ->
             NavigationBarItem(
-                selected = index == selectedItem,
-                onClick = {onItemClick(item.route)},
+                selected = selectedItem == item.route,
+                onClick = {onItemClick(index)},
                 icon = {
                     Column(horizontalAlignment = CenterHorizontally) {
                         Icon(
@@ -81,7 +81,7 @@ fun BottomNavigationPreview() {
                 BottomNavItem(Screen.Bookmarks, R.drawable.ic_bookmark, "Bookmarks")
             ),
             onItemClick = {},
-            selectedItem = 0
+            selectedItem = Screen.Home
         )
     }
 }

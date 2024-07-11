@@ -115,4 +115,6 @@ dependencies {
     // Kotlin Serialization for JSON parsing
     implementation(libs.kotlinx.serialization.json)
 
+    implementation(libs.kotlin.reflect)
+
 }

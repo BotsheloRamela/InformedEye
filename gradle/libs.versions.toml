@@ -20,7 +20,6 @@ hiltCompiler = "1.2.0"
 paging = "3.3.0"
 datastore = "1.1.1"
 uiTextGoogleFonts = "1.6.8"
-parcelize = "1.9.23"
 
 [libraries]
 # AndroidX Libraries
@@ -74,6 +73,8 @@ navigation-compose = { module = "androidx.navigation:navigation-compose", versio
 # Kotlin Serialization for JSON parsing
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 
+kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -82,4 +83,4 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 room = { id = "androidx.room", version.ref = "androidxRoom" }
 dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize",  version.ref = "parcelize"  }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize",  version.ref = "kotlin"  }
