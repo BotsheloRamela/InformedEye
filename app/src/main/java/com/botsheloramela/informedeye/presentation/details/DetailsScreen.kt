@@ -59,7 +59,7 @@ fun DetailsScreen(
                         }
                     }
                 },
-                onBookmarkClick = { event(DetailsEvent.SaveArticle) },
+                onBookmarkClick = { event(DetailsEvent.UpsertDeleteArticle(article)) },
                 onBrowsingClick = {
                     Intent(Intent.ACTION_VIEW).also {
                         it.data = Uri.parse(article.url)
