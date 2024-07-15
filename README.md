@@ -50,12 +50,10 @@ InformedEye utilizes Gradle's new version catalog feature for managing dependenc
 build process and ensuring consistency across projects. The key dependencies include:
 
 * **Kotlin**: Core library for Kotlin development.
-* **Lifecycle-runtime-ktx**: Extensions for lifecycle-aware components.
-* **Coroutines-android**: Enables coroutines support for Android.
 * **Hilt-android**: Dependency injection framework.
 * **Room**: Local database for storing articles.
 * **Retrofit**: Networking library for API calls.
-*  **Coil**: Image loading library.
+* **Coil**: Image loading library.
 * **Paging 3**: Library for efficient data loading and pagination.
 
 ## Getting Started
