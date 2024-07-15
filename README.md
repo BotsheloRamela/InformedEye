@@ -1,34 +1,79 @@
-# InformedEye
+# InformedEye: A Minimalist News Reader App
 
 ## Overview
-InformedEye is a cutting-edge news application built to keep users at the forefront of global events. 
-Leveraging Kotlin, MVVM architecture, and Clean Architecture principles, InformedEye offers a comprehensive 
-news experience with features like a customizable news feed, advanced search functionality, and article saving 
-for offline access.
+InformedEye is a sleek and straightforward news reader application designed to deliver the latest news 
+articles to users. It leverages modern Android development practices, including Kotlin, MVVM and Clean architecture, 
+and the innovative Jetpack Compose UI toolkit. A notable aspect of this project is its utilization of 
+Jetpack Compose's new type-safe navigation feature, which is currently in its beta phase as of July 2024, 
+specifically version **2.8.0-beta03**. This feature enhances the app's navigational experience by ensuring type 
+safety during navigation actions, reducing runtime errors and improving developer productivity.
 
-## Features
-- **Search Functionality**: Powerful search capabilities to find articles quickly and efficiently.
-- **Article Saving**: Users can save articles for offline reading, ensuring they never miss out on important stories.
+## Key Features
+* **News Feed**: Access a curated selection of news articles from various sources.
+* **Search Functionality**: Quickly find articles related to specific topics or keywords.
+* **Offline Support**: Save articles for offline reading, ensuring you don't miss out on important stories.
+* **Modern UI**: Delivers a contemporary user interface using Material Design components.
+* **Enhanced Interactions**: Includes Android intent features for sharing article links and opening articles 
+in a web browser, enhancing user engagement.
+
+### Enhancing User Engagement with Android Intents
+* **Share Article Links**: Users can share news article links with others directly from the app using Android's
+  native share intent mechanism.
+* **View Full Articles in Browser**: Users have the option to open full articles in a web browser, leveraging
+  Android intents to initiate the browser activity with the article's URL.
 
 ## Technologies
-- **Kotlin**: The primary programming language used for robust and efficient code.
-- **MVVM Architecture**: Utilized for separating business and presentation logic, enhancing maintainability and testability.
-- **Clean Architecture**: Ensures separation of concerns, making the app scalable and easy to manage.
-- **Retrofit**: Handles network operations and communication with external APIs.
-- **Room Database**: Provides local data persistence for articles and user preferences.
+* **Kotlin**: The foundation of the app, chosen for its concise syntax and safety features.
+* **MVVM & Clean Architecture**: Organizes the codebase into layers for better maintainability and testability.
+* **Jetpack Compose**: Employs the latest UI toolkit for building a responsive and modern UI.
+* **Compose Type-Safe Navigation (Beta)**: Implements the beta version of type-safe navigation for enhanced reliability and developer experience.
+* **newsapi**: Serves as the news content provider, requiring an API key for access.
+
+## App Screenshots
+<p>
+   <p>
+      <img src="screenshots/Home_Dark.png" width="185" height="400" alt="Home Dark Mode"/> 
+      <img src="screenshots/Search_Dark.png" width="185" height="400" alt="Search Dark Mode"/>
+      <img src="screenshots/Bookmarks_Dark.png" width="185" height="400" alt="Bookmarks Dark Mode"/>
+      <img src="screenshots/Details_Dark.png" width="185" height="400" alt="Details Dark Mode"/>
+   </p>
+   <p>
+      <img src="screenshots/Home_Light.png" width="185" height="400" alt="Home Light Mode"/>
+      <img src="screenshots/Search_Light.png" width="185" height="400" alt="Search Light Mode"/>
+      <img src="screenshots/Bookmarks_Light.png" width="185" height="400" alt="Bookmarks Light Mode"/>
+      <img src="screenshots/Details_Light.png" width="185" height="400" alt="Details Light Mode"/>
+   </p>
+</p>
+
+## Key Dependencies
+InformedEye utilizes Gradle's new version catalog feature for managing dependencies, streamlining the 
+build process and ensuring consistency across projects. The key dependencies include:
+
+* **Kotlin**: Core library for Kotlin development.
+* **Lifecycle-runtime-ktx**: Extensions for lifecycle-aware components.
+* **Coroutines-android**: Enables coroutines support for Android.
+* **Hilt-android**: Dependency injection framework.
+* **Room**: Local database for storing articles.
+* **Retrofit**: Networking library for API calls.
+*  **Coil**: Image loading library.
+* **Paging 3**: Library for efficient data loading and pagination.
 
 ## Getting Started
-
-To get started with InformedEye, clone the repository and follow the setup instructions below.
+To set up InformedEye, follow these steps:
 
 ### Prerequisites
-- Android Studio Arctic Fox (or newer)
-- An Android device or emulator
+* Android Studio Arctic Fox (or newer) installed.
+* An Android device or emulator for testing.
 
-### Installation
-1. Clone the repository: `git clone https://github.com/BotsheloRamela/InformedEye.git`
-2. Open the project in Android Studio.
-3. Run the app on your Android device or emulator.
+### Configuration Steps
+1. **Obtain an API Key**: Sign up on the [newsapi](https://newsapi.org/) website to receive an API key.
+2. **Configure API Key**: Place your API key in the `local.properties` file as `API_KEY=<your_api_key_here>`.
+3. **Clone the Repository**: Use Git to clone the InformedEye repository.
+    ```shell
+    git clone https://github.com/BotsheloRamela/InformedEye.git
+    ```
+4. **Review Dependencies**: Familiarize yourself with the dependencies managed via Gradle's version catalog.
+5. **Run the App**: Launch the app on an Android device or emulator to explore its features.
 
 ## Contributing
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. 
@@ -39,3 +84,8 @@ Any contributions you make are greatly appreciated.
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
+
+## Conclusion
+InformedEye exemplifies the simplicity and efficiency of a well-crafted news reader app. By integrating 
+modern Android development practices, including the beta version of type-safe navigation with Jetpack Compose, 
+it offers a user-friendly and reliable news reading experience.
