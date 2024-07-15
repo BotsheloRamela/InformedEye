@@ -25,7 +25,15 @@ import com.botsheloramela.informedeye.presentation.details.DetailsScreen
 import com.botsheloramela.informedeye.presentation.details.DetailsViewModel
 import com.botsheloramela.informedeye.presentation.home.HomeScreen
 import com.botsheloramela.informedeye.presentation.home.HomeViewModel
+import com.botsheloramela.informedeye.presentation.search.SearchScreen
+import com.botsheloramela.informedeye.presentation.search.SearchViewModel
 
+/**
+ * NavGraph composable function that defines the navigation graph for the app.
+ *
+ * @param navController the navigation controller
+ * @param startDestination the start destination of the navigation graph
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun NavGraph(
@@ -35,6 +43,7 @@ fun NavGraph(
     val bottomNavItems = remember {
         listOf(
             BottomNavItem(Screen.Home, R.drawable.ic_home, "Home"),
+            BottomNavItem(Screen.Search, R.drawable.ic_search, "Search"),
             BottomNavItem(Screen.Bookmarks, R.drawable.ic_bookmark, "Bookmarks")
         )
     }
@@ -47,6 +56,7 @@ fun NavGraph(
     currentRoute = when (backStackEntry?.destination?.route) {
         Screen.Home.toString() -> Screen.Home
         Screen.Details.toString() -> Screen.Details
+        Screen.Bookmarks.toString() -> Screen.Bookmarks
         else -> currentRoute
     }
 
@@ -105,6 +115,18 @@ fun NavGraph(
                 val state = viewModel.state.value
                 BookmarksScreen(
                     state = state,
+                    navigateToDetails = { article ->
+                        navigateToDetails(navController, article)
+                    }
+                )
+            }
+
+            composable<Screen.Search> {
+                val viewModel: SearchViewModel = hiltViewModel()
+                val state = viewModel.state.value
+                SearchScreen(
+                    state = state,
+                    event = viewModel::onEvent,
                     navigateToDetails = { article ->
                         navigateToDetails(navController, article)
                     }

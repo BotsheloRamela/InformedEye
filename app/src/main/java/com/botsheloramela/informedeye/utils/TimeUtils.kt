@@ -5,6 +5,7 @@ import java.time.ZoneId
 import java.util.Calendar
 import java.util.Locale
 import java.util.TimeZone
+import java.util.regex.Pattern
 import kotlin.math.abs
 
 /**
@@ -45,5 +46,20 @@ object TimeUtils {
             // Older dates
             SimpleDateFormat(DATE_FORMAT_DAY_MONTH_YEAR, Locale.getDefault()).format(date)
         }
+    }
+
+    /**
+     * Checks if the provided string is a timestamp.
+     *
+     * @param title The string to check.
+     * @return True if the string is a timestamp, false otherwise.
+     */
+    fun isTimestamp(title: String): Boolean {
+        val timestampPattern = Pattern.compile(
+            // Date patterns: yyyy-MM-dd, MM/dd/yyyy, dd/MM/yyyy
+            "^\\d{4}[-/]\\d{2}[-/]\\d{2}( \\d{2}:\\d{2}(?::\\d{2})?)?( [A-Z]{2,4})?$|" + // yyyy-MM-dd or yyyy/MM/dd with optional time and timezone
+                    "^\\d{2}[-/]\\d{2}[-/]\\d{4}( \\d{2}:\\d{2}(?::\\d{2})?)?( [A-Z]{2,4})?$"     // dd/MM/yyyy or MM/dd/yyyy with optional time and timezone
+        )
+        return timestampPattern.matcher(title).matches()
     }
 }

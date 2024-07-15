@@ -25,6 +25,13 @@ import com.botsheloramela.informedeye.navigation.Screen
 import com.botsheloramela.informedeye.presentation.Dimensions.ExtraSmallPadding2
 import com.botsheloramela.informedeye.ui.theme.InformedEyeTheme
 
+/**
+ * BottomNavigation composable function that defines the bottom navigation bar for the app.
+ *
+ * @param items the list of bottom navigation items
+ * @param onItemClick the click listener for the bottom navigation items
+ * @param selectedItem the selected item in the bottom navigation
+ */
 @Composable
 fun BottomNavigation(
     items: List<BottomNavItem>,
@@ -63,6 +70,13 @@ fun BottomNavigation(
     }
 }
 
+/**
+ * Data class that represents a bottom navigation item.
+ *
+ * @param route the route of the item
+ * @param icon the icon of the item
+ * @param title the title of the item
+ */
 data class BottomNavItem(
     val route: Screen,
     @DrawableRes val icon: Int,
@@ -77,7 +91,7 @@ fun BottomNavigationPreview() {
         BottomNavigation(
             items = listOf(
                 BottomNavItem(Screen.Home, R.drawable.ic_home, "Home"),
-//                BottomNavItem("search", R.drawable.ic_search, "Search"),
+                BottomNavItem(Screen.Search, R.drawable.ic_search, "Search"),
                 BottomNavItem(Screen.Bookmarks, R.drawable.ic_bookmark, "Bookmarks")
             ),
             onItemClick = {},

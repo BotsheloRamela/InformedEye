@@ -12,6 +12,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ViewModel for the DetailsScreen.
+ *
+ * @property newsUseCases The NewsUseCases instance to use for fetching news articles.
+ */
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
     private val newsUseCases: NewsUseCases

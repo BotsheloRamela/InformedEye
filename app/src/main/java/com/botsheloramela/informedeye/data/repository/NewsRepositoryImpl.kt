@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.botsheloramela.informedeye.data.remote.NewsApi
 import com.botsheloramela.informedeye.data.remote.NewsArticlePagingSource
+import com.botsheloramela.informedeye.data.remote.SearchNewsPagingSource
 import com.botsheloramela.informedeye.domain.model.Article
 import com.botsheloramela.informedeye.domain.repository.NewsRepository
 import kotlinx.coroutines.flow.Flow
@@ -52,6 +53,26 @@ class NewsRepositoryImpl(
                 NewsArticlePagingSource(
                     newsApi = newsApi,
                     sources = null
+                )
+            }
+        ).flow
+    }
+
+    /**
+     * Searches for news articles based on the provided query and returns them as a flow of paginated data.
+     *
+     * @param query The search query to use for fetching news articles.
+     * @return A Flow emitting PagingData<Article>, representing paginated news articles.
+     */
+    override fun searchNews(query: String, sources: List<String>): Flow<PagingData<Article>> {
+        return Pager(
+            config = PagingConfig(pageSize = 10), // Define the size of pages to be loaded
+            // Create a new instance of NewsArticlePagingSource for each pager
+            pagingSourceFactory = {
+                SearchNewsPagingSource(
+                    searchQuery = query,
+                    newsApi = newsApi,
+                    sources = sources.joinToString(separator = ",") // Combine sources into a single string
                 )
             }
         ).flow

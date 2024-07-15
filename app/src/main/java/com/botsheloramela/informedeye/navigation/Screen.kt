@@ -2,8 +2,11 @@ package com.botsheloramela.informedeye.navigation
 
 import kotlinx.serialization.Serializable
 
+/**
+ * Represents the different screens in the app.
+ */
 @Serializable
-sealed class Screen() {
+sealed class Screen {
     companion object {
         fun fromRoute(route: String): Screen? {
             return Screen::class.sealedSubclasses.firstOrNull {
@@ -19,5 +22,8 @@ sealed class Screen() {
 
     @Serializable
     data object Bookmarks : Screen()
+
+    @Serializable
+    data object Search : Screen()
 
 }

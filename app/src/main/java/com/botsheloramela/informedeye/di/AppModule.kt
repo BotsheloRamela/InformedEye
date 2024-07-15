@@ -12,6 +12,7 @@ import com.botsheloramela.informedeye.domain.usecase.GetNewsUseCase
 import com.botsheloramela.informedeye.domain.usecase.GetTopHeadlinesUseCase
 import com.botsheloramela.informedeye.domain.usecase.NewsArticleManager
 import com.botsheloramela.informedeye.domain.usecase.NewsUseCases
+import com.botsheloramela.informedeye.domain.usecase.SearchNewsUseCase
 import com.botsheloramela.informedeye.utils.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -49,7 +50,8 @@ object AppModule {
         return NewsUseCases(
             getNews = GetNewsUseCase(newsRepository),
             getTopHeadlines = GetTopHeadlinesUseCase(newsRepository),
-            newsArticleManager = NewsArticleManager(newsDao)
+            newsArticleManager = NewsArticleManager(newsDao),
+            searchNews = SearchNewsUseCase(newsRepository)
         )
     }
 
