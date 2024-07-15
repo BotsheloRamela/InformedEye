@@ -27,7 +27,7 @@ in a web browser, enhancing user engagement.
 * **MVVM & Clean Architecture**: Organizes the codebase into layers for better maintainability and testability.
 * **Jetpack Compose**: Employs the latest UI toolkit for building a responsive and modern UI.
 * **Compose Type-Safe Navigation (Beta)**: Implements the beta version of type-safe navigation for enhanced reliability and developer experience.
-* **newsapi**: Serves as the news content provider, requiring an API key for access.
+* **NewsApi**: Serves as the news content provider, requiring an API key for access.
 
 ## App Screenshots
 <p>
@@ -64,7 +64,7 @@ To set up InformedEye, follow these steps:
 * An Android device or emulator for testing.
 
 ### Configuration Steps
-1. **Obtain an API Key**: Sign up on the [newsapi](https://newsapi.org/) website to receive an API key.
+1. **Obtain an API Key**: Sign up on the [NewsApi](https://newsapi.org/) website to receive an API key.
 2. **Configure API Key**: Place your API key in the `local.properties` file as `API_KEY=<your_api_key_here>`.
 3. **Clone the Repository**: Use Git to clone the InformedEye repository.
     ```shell
