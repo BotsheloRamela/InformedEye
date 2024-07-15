@@ -8,13 +8,10 @@ import com.botsheloramela.informedeye.data.local.NewsTypeConverter
 import com.botsheloramela.informedeye.data.remote.NewsApi
 import com.botsheloramela.informedeye.data.repository.NewsRepositoryImpl
 import com.botsheloramela.informedeye.domain.repository.NewsRepository
-import com.botsheloramela.informedeye.domain.usecase.DeleteArticle
-import com.botsheloramela.informedeye.domain.usecase.GetArticle
-import com.botsheloramela.informedeye.domain.usecase.GetArticles
 import com.botsheloramela.informedeye.domain.usecase.GetNewsUseCase
 import com.botsheloramela.informedeye.domain.usecase.GetTopHeadlinesUseCase
+import com.botsheloramela.informedeye.domain.usecase.NewsArticleManager
 import com.botsheloramela.informedeye.domain.usecase.NewsUseCases
-import com.botsheloramela.informedeye.domain.usecase.UpsertArticle
 import com.botsheloramela.informedeye.utils.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -52,10 +49,7 @@ object AppModule {
         return NewsUseCases(
             getNews = GetNewsUseCase(newsRepository),
             getTopHeadlines = GetTopHeadlinesUseCase(newsRepository),
-            upsertArticle = UpsertArticle(newsDao),
-            deleteArticle = DeleteArticle(newsDao),
-            getArticles = GetArticles(newsDao),
-            getArticle = GetArticle(newsDao)
+            newsArticleManager = NewsArticleManager(newsDao)
         )
     }
 

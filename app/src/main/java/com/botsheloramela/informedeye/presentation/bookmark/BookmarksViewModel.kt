@@ -26,7 +26,7 @@ class BookmarkViewModel @Inject constructor(
     }
 
     private fun getArticles() {
-        newsUseCases.getArticles().onEach {
+        newsUseCases.newsArticleManager.selectArticles().onEach {
             _state.value = _state.value.copy(articles = it)
         }.launchIn(viewModelScope)
     }
