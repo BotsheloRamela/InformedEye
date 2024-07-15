@@ -13,7 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import com.botsheloramela.informedeye.domain.model.Article
+import com.botsheloramela.informedeye.presentation.Dimensions
 import com.botsheloramela.informedeye.presentation.Dimensions.MediumPadding1
+import com.botsheloramela.informedeye.presentation.Dimensions.MediumPadding2
 import com.botsheloramela.informedeye.presentation.components.BookmarkedArticlesList
 
 @Composable
@@ -43,14 +45,11 @@ fun BookmarksScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .statusBarsPadding()
-                .padding(padding)
+                .padding(horizontal = Dimensions.ExtraSmallPadding2)
+                .padding(top = MediumPadding1)
         ) {
-//            Text(
-//                text = "Bookmarks",
-//                style = MaterialTheme.typography.displayMedium.copy(fontWeight = FontWeight.Bold)
-//            )
 
-            Spacer(modifier = Modifier.padding(MediumPadding1))
+            Spacer(modifier = Modifier.padding(MediumPadding2))
 
             BookmarkedArticlesList(
                 articles = state.articles,

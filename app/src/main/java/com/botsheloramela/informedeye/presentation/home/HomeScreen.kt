@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -81,42 +82,40 @@ fun HomeScreen(
             )
         },
     ) { padding ->
-        Surface(
+        Column(
             modifier = Modifier
-                .padding(padding)
-                .padding(horizontal = ExtraSmallPadding2),
+                .fillMaxSize()
+                .statusBarsPadding()
+                .padding(horizontal = ExtraSmallPadding2)
+                .padding(top = MediumPadding1)
         ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(top = MediumPadding1)
-            ) {
-                Text(
-                    text = formattedDate,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.secondary
-                )
+            Spacer(modifier = Modifier.padding(MediumPadding2))
 
-                Text(
-                    text = "Welcome back",
-                    style = MaterialTheme.typography.titleLarge,
-                    color = MaterialTheme.colorScheme.primary,
-                    fontWeight = MaterialTheme.typography.titleLarge.fontWeight,
-                )
-                Spacer(modifier = Modifier.height(MediumPadding1))
-                // TODO: Top headlines carousal
-                TopArticlesList(
-                    modifier = Modifier.padding(horizontal = MediumPadding1),
-                    articles = topHeadlines,
-                    onClick = navigateToDetails
-                )
-                Spacer(modifier = Modifier.height(MediumPadding1))
-                ArticlesList(
-                    modifier = Modifier.padding(horizontal = MediumPadding1),
-                    articles = articles,
-                    onClick = navigateToDetails
-                )
-            }
+            Text(
+                text = formattedDate,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.secondary
+            )
+
+            Text(
+                text = "Welcome back",
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.primary,
+                fontWeight = MaterialTheme.typography.titleLarge.fontWeight,
+            )
+            Spacer(modifier = Modifier.height(MediumPadding1))
+            // TODO: Top headlines carousal
+            TopArticlesList(
+                modifier = Modifier.padding(horizontal = MediumPadding1),
+                articles = topHeadlines,
+                onClick = navigateToDetails
+            )
+            Spacer(modifier = Modifier.height(MediumPadding1))
+            ArticlesList(
+                modifier = Modifier.padding(horizontal = MediumPadding1),
+                articles = articles,
+                onClick = navigateToDetails
+            )
         }
     }
 }

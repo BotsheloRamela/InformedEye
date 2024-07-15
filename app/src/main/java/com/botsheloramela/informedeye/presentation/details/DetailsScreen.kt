@@ -3,6 +3,7 @@ package com.botsheloramela.informedeye.presentation.details
 import android.content.Intent
 import android.content.res.Configuration
 import android.net.Uri
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,6 +16,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -35,15 +37,29 @@ import com.botsheloramela.informedeye.presentation.details.components.DetailsTop
 import com.botsheloramela.informedeye.ui.theme.InformedEyeTheme
 import com.botsheloramela.informedeye.utils.RandomPlaceholderImageUtil
 import com.botsheloramela.informedeye.utils.TimeUtils
+import com.botsheloramela.informedeye.utils.UIComponent
 
 @Composable
 fun DetailsScreen(
     article: Article,
     event: (DetailsEvent) -> Unit,
+    sideEffect: UIComponent?,
     navigateUp: () -> Unit
 ) {
     val context = LocalContext.current
     val randomDrawableRes = RandomPlaceholderImageUtil.getRandomDrawableResource()
+
+    LaunchedEffect(key1 = sideEffect) {
+        sideEffect?.let {
+            when(sideEffect){
+                is UIComponent.Toast ->{
+                    Toast.makeText(context, sideEffect.message, Toast.LENGTH_SHORT).show()
+                    event(DetailsEvent.RemoveSideEffect)
+                }
+                else -> Unit
+            }
+        }
+    }
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -143,7 +159,8 @@ fun DetailsScreenPreview() {
                 publishedAt = "2024-09-15T00:00:00Z",
             ),
             event = {},
-            navigateUp = {}
+            navigateUp = {},
+            sideEffect = null
         )
     }
 }

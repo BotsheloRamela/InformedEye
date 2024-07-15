@@ -67,7 +67,7 @@ fun NavGraph(
                 )
             }
         }
-    ) {
+    ) { padding ->
         NavHost(
             navController = navController,
             startDestination = startDestination,
@@ -89,18 +89,15 @@ fun NavGraph(
 
             composable<Screen.Details> {
                 val viewModel: DetailsViewModel = hiltViewModel()
-                // TODO: Handle side effect
                 navController.previousBackStackEntry?.savedStateHandle?.get<Article?>("article")
                     ?.let { article ->
                         DetailsScreen(
                             article = article,
                             event = viewModel::onBookmarkArticle,
-                            navigateUp = {
-                                navController.popBackStack()
-                            }
+                            sideEffect = viewModel.sideEffect,
+                            navigateUp = {navController.popBackStack()}
                         )
                     }
-
             }
 
             composable<Screen.Bookmarks> {
