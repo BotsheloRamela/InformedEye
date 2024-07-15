@@ -6,7 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 /**
  * Manages the news articles in the database.
-
  */
 class NewsArticleManager(
     private val newsDao: NewsDao

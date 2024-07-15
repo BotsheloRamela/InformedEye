@@ -7,6 +7,9 @@ import com.botsheloramela.informedeye.domain.usecase.NewsUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+/**
+ * ViewModel for the HomeScreen
+ */
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val newsUseCases: NewsUseCases

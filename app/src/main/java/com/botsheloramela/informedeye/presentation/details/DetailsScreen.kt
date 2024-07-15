@@ -33,11 +33,11 @@ import com.botsheloramela.informedeye.domain.model.Source
 import com.botsheloramela.informedeye.presentation.Dimensions.ArticleImageHeight
 import com.botsheloramela.informedeye.presentation.Dimensions.ExtraSmallPadding3
 import com.botsheloramela.informedeye.presentation.Dimensions.MediumPadding1
+import com.botsheloramela.informedeye.presentation.components.UIComponent
 import com.botsheloramela.informedeye.presentation.details.components.DetailsTopAppBar
 import com.botsheloramela.informedeye.ui.theme.InformedEyeTheme
 import com.botsheloramela.informedeye.utils.RandomPlaceholderImageUtil
 import com.botsheloramela.informedeye.utils.TimeUtils
-import com.botsheloramela.informedeye.utils.UIComponent
 
 @Composable
 fun DetailsScreen(

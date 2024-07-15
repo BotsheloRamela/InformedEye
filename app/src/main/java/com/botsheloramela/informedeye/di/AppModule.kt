@@ -22,6 +22,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
+/**
+ * Module that provides dependencies for the app
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {

@@ -6,6 +6,9 @@ import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 
+/**
+ * Data class representing an article
+ */
 @Entity
 @Parcelize
 data class Article(

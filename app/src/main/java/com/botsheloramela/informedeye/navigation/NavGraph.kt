@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -21,6 +23,7 @@ import com.botsheloramela.informedeye.navigation.components.BottomNavItem
 import com.botsheloramela.informedeye.navigation.components.BottomNavigation
 import com.botsheloramela.informedeye.presentation.bookmark.BookmarkViewModel
 import com.botsheloramela.informedeye.presentation.bookmark.BookmarksScreen
+import com.botsheloramela.informedeye.presentation.components.UIComponent
 import com.botsheloramela.informedeye.presentation.details.DetailsScreen
 import com.botsheloramela.informedeye.presentation.details.DetailsViewModel
 import com.botsheloramela.informedeye.presentation.home.HomeScreen
@@ -101,10 +104,11 @@ fun NavGraph(
                 val viewModel: DetailsViewModel = hiltViewModel()
                 navController.previousBackStackEntry?.savedStateHandle?.get<Article?>("article")
                     ?.let { article ->
+                        val sideEffect by viewModel.sideEffect.collectAsState(null)
                         DetailsScreen(
                             article = article,
                             event = viewModel::onBookmarkArticle,
-                            sideEffect = viewModel.sideEffect,
+                            sideEffect = sideEffect,
                             navigateUp = {navController.popBackStack()}
                         )
                     }
@@ -136,13 +140,23 @@ fun NavGraph(
     }
 }
 
-/* Navigate to the details screen */
+/**
+ * Navigate to the details screen.
+ *
+ * @param navController the navigation controller
+ * @param article the article to display
+ */
 private fun navigateToDetails(navController: NavController, article: Article) {
     navController.currentBackStackEntry?.savedStateHandle?.set("article", article)
     navController.navigate(Screen.Details)
 }
 
-/* Navigate to the selected tab */
+/**
+ * Navigate to the specified tab.
+ *
+ * @param navController the navigation controller
+ * @param screen the screen to navigate to
+ */
 private fun navigateToTab(navController: NavController, screen: Screen) {
     navController.navigate(screen) {
         navController.graph.startDestinationRoute?.let { route ->
